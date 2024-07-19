@@ -27,11 +27,11 @@ def blob_trigger_v2(myblob: func.InputStream):
         "blob_url": blob_url
     }
    
-    # Send JSON data to HTTP endpoint
+    # Send JSON data to HTTP endpoint w/ error checking
     http_endpoint = "http://localhost:7071/api/overlay"
     try:
         response = requests.post(http_endpoint, json=json_data)
-        response.raise_for_status()  # This will raise an error for bad HTTP response statuses
+        response.raise_for_status()  
     except requests.exceptions.RequestException as e:
         logging.error(f"Failed to send JSON data. Error: {e}")
         return
