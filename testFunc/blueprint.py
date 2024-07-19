@@ -27,7 +27,7 @@ def blob_trigger_v2(myblob: func.InputStream):
         "blob_url": blob_url
     }
    
-    # Send JSON data to HTTP endpoint w/ error checking
+    # send JSON data to HTTP endpoint w/ error checking
     http_endpoint = "http://localhost:7071/api/overlay"
     try:
         response = requests.post(http_endpoint, json=json_data)
@@ -58,7 +58,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if not content_tags or not blob_url:
         return func.HttpResponse("Missing required fields", status_code=400)
    
-    # Extract the blob path from the URL
+    # get the blob path from the URL
     blob_path = blob_url.replace(f"https://funcstoreoam.blob.core.windows.net/newfuncstorage/", "")
     logging.info(f"Blob path: {blob_path}")
    
@@ -69,20 +69,20 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     blob_service_client = BlobServiceClient.from_connection_string(connection_string)
    
     try:
-        # Read the original text file from the blob container
+        # read the original text file from the blob container
         blob_client = blob_service_client.get_blob_client(container=original_container_name, blob=blob_path)
         logging.info(f"Attempting to download blob: {blob_path} from container: {original_container_name}")
        
         original_content = blob_client.download_blob().readall().decode('utf-8')
         logging.info(f"Original content: {original_content}")
        
-        # Append JSON contents to the original text file content
+        # add JSON contents to the original text file content
         modified_content = original_content + "\n" + json.dumps(req_body)
        
-        # Define the modified blob path
+        # create the modified blob path
         modified_blob_path = blob_path.replace(".txt", "_modified.txt")
        
-        # Write the modified content to the new storage container
+        # write the modified file to the edited file storage container
         modified_blob_client = blob_service_client.get_blob_client(container=modified_container_name, blob=modified_blob_path)
         modified_blob_client.upload_blob(modified_content, overwrite=True)
        
