@@ -1,9 +1,9 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=funcstoreoam;AccountKey=H56cK0x1GmATqFyonNc3WnVkhelgI4yTifzjGdDV2dDVAMpckqCPziUft1j2o8iVGquuJxgkh+g1+ASt+h0IzQ==;EndpointSuffix=core.windows.net",
+    "AzureWebJobsStorage": "",
     "FUNCTIONS_WORKER_RUNTIME": "python",
     "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
-    "funcstoreoam_STORAGE": "DefaultEndpointsProtocol=https;AccountName=funcstoreoam;AccountKey=H56cK0x1GmATqFyonNc3WnVkhelgI4yTifzjGdDV2dDVAMpckqCPziUft1j2o8iVGquuJxgkh+g1+ASt+h0IzQ==;EndpointSuffix=core.windows.net"
+    "funcstoreoam_STORAGE": ""
   }
 }
